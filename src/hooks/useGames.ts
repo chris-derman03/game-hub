@@ -1,10 +1,13 @@
+/* This is where we import all our games via an API call to rawg.io*/
+
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {
     id: number;
     name: string;
+    background_image: string;
 }
   
 interface FetchGamesResponse {
