@@ -1,4 +1,4 @@
-import { HStack, Icon } from "@chakra-ui/react";
+import { HStack, Icon, Tooltip } from "@chakra-ui/react";
 
 import { IconType } from "react-icons";
 import {
@@ -35,12 +35,16 @@ const PlatformIconList = ({ platforms }: Props) => {
   return (
     <HStack marginY={"10px"}>
       {platforms.map((platform) => (
-        <Icon
-          as={iconMap[platform.slug]}
-          color="gray.500"
-          boxSize={5}
-          key={platform.id}
-        />
+        <Tooltip hasArrow label={platform.name}>
+          <span>
+            <Icon
+              as={iconMap[platform.slug]}
+              color="gray.500"
+              boxSize={5}
+              key={platform.id}
+            />
+          </span>
+        </Tooltip>
       ))}
     </HStack>
   );
