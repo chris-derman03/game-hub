@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 
 import NavBar from "./components/Nav/NavBar";
 import GenreList from "./components/aside/GenreList";
-import GameGrid from "./components/main/GameGrid";
+import MainBody from "./components/main/MainBody";
+import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
-import PlatformSelector from "./components/main/PlatformSelector";
 import { Platform } from "./hooks/useGames";
-import SortSelector from "./components/main/SortSelector";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -44,21 +42,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack paddingLeft={2} spacing={5} marginBottom={5}>
-          <PlatformSelector
-            selectedPlatform={gameQuery.platform}
-            onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-          />
-          <SortSelector
-            sortOrder={gameQuery.sortOrder}
-            onSelectSortOrder={(sortOrder) =>
-              setGameQuery({ ...gameQuery, sortOrder })
-            }
-          />
-        </HStack>
-        <GameGrid gameQuery={gameQuery} />
+        <MainBody gameQuery={gameQuery} setGameQuery={setGameQuery}></MainBody>
       </GridItem>
     </Grid>
   );
